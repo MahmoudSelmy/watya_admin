@@ -55,6 +55,7 @@ class _AddProductState extends State<AddProduct> {
                     filled: true,
                   ),
                   validator: (value) {
+                    // ignore: missing_return
                     if (value.isEmpty) {
                       return 'Please enter The price';
                     }

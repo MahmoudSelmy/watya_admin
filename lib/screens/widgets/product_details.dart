@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:watya_app/core/models/product_model.dart';
 import 'package:watya_app/core/viewmodels/products_curd_model.dart';
 
-import 'modify_product.dart';
+import '../views/modify_product.dart';
 
 class ProductDetails extends StatelessWidget {
   final Product product;

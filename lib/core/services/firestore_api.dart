@@ -13,6 +13,12 @@ class FireStoreAPI{
     CollectionReference ref =  _db.collection(collectionPath);
     return ref.snapshots() ;
   }
+
+  Stream<QuerySnapshot> streamEqualConditionDataCollection(String collectionPath, String attribute, String value) {
+    Query ref =  _db.collection(collectionPath).where(attribute, isEqualTo: value);
+    return ref.snapshots() ;
+  }
+
   Future<DocumentSnapshot> getDocumentById(String collectionPath, String id) {
     CollectionReference ref =  _db.collection(collectionPath);
     return ref.document(id).get();

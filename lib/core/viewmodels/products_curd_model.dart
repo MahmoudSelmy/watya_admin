@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:watya_app/core/constants.dart';
 import 'package:watya_app/core/models/product_model.dart';
 import 'package:watya_app/core/services/firestore_api.dart';
-import '../../locator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductsCRUDModel extends ChangeNotifier {
-  FireStoreAPI _api = locator<FireStoreAPI>();
+  FireStoreAPI _api = FireStoreAPI();
   List<Product> products;
   String fireStorePath = CONSTANTS.FIRE_STORE_PRODUCTS_COLLECTION_PATH;
 
@@ -22,6 +21,11 @@ class ProductsCRUDModel extends ChangeNotifier {
 
   Stream<QuerySnapshot> fetchProductsAsStream() {
     return _api.streamDataCollection(fireStorePath);
+  }
+
+  Stream<QuerySnapshot> fetchBrandProductsAsStream(String brandId) {
+    return _api.streamEqualConditionDataCollection(fireStorePath, 'brandId', brandId);
+    // return _api.streamDataCollection(fireStorePath);
   }
 
   Future<Product> getProductById(String id) async {
